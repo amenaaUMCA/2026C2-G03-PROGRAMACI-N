@@ -16,7 +16,7 @@ sedes = [
         "nombre": "Panaderia Cartago",
         "provincia": "Cartago",
         "tipo": "Panaderia",
-        "ventas": [65000, 70000, 72000, 69000, 75000],
+        "ventas": [65000, 70000, 0, 0, 75000],
         "meta": 380000,
     },
     {

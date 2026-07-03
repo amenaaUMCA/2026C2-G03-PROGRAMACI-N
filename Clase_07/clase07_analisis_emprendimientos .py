@@ -30,8 +30,21 @@ def calcular_clasificacion(porcentaje_logro):
     return clasificacion_empredimiento
 
 def imprimir_reporte(reporte):
-    pass
-
+    """Imprime el reorte final de ventas por emprendimiento"""
+    print("\nREPORTE FINAL")
+    print("-" * 60)
+    for fila in reporte:
+        print(f"Empredimiento: {fila["nombre"].upper()}")
+        print(f"Provincia: {fila["provincia"]}")
+        print(f"Tipo: {fila["tipo"]}")
+        
+        print(f"Total semanal: ₡{fila["total"]:,.2f}")
+        print(f"Promedio diario: ₡{fila["promedio"]:,.2f}")
+        print(f"Porcentaje cumplimiento: {fila["porcentaje"]:,.0f}%")
+        print(f"Estado: {fila["estado"]}")
+        print("-" * 60)
+    print(f"Cantidad de emprendimientos: {len(reporte)}")
+    
 #print("Cantidad de sedes:", len(sedes))
 #print(type(sedes), "vrs", type(sedes[0]))
 #print("Datos por sede:", sedes[0].keys())
@@ -72,7 +85,8 @@ for empredimiento in sedes:
             
         }
     )
-    imprimir_reporte(reporte)
+#AL FINALIZAR FOR
+imprimir_reporte(reporte)
 
 #print(reporte)
 print(provincias)
