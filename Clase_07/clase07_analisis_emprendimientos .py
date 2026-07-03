@@ -29,11 +29,18 @@ def calcular_clasificacion(porcentaje_logro):
         clasificacion_empredimiento = "ADVERTENCIA, problemas de rentabilidad. URGE ATENCIÓN."
     return clasificacion_empredimiento
 
+def imprimir_reporte(reporte):
+    pass
+
 #print("Cantidad de sedes:", len(sedes))
 #print(type(sedes), "vrs", type(sedes[0]))
 #print("Datos por sede:", sedes[0].keys())
 #print("\nPrimer emprendimiento:", sedes[0]["nombre"])
 
+
+reporte = []
+provincias = set()
+#FALTA GENTE
 
 for empredimiento in sedes:
     #empredimiento = sedes[0]  # Extraigo el primer empredimeinto de la lista
@@ -45,8 +52,27 @@ for empredimiento in sedes:
     promedio_diario = calcular_promedio(ventas)
     clasificacion = calcular_clasificacion(promedio_emprendiemto)
 
-    print("\nEmprendimiento:", empredimiento["nombre"])
-    print("Total ventas:", total_emprendimiento)
-    print("Porcentaje logro:", promedio_emprendiemto)
-    print("Promedio diario:", promedio_diario)
-    print("Análisis de emprendimiento:", clasificacion)
+
+    provincias.add(empredimiento["provincia"]) # Crea la colección sinb duplicar valores
+    
+    #print("\nEmprendimiento:", empredimiento["nombre"])
+    #print("Total ventas:", total_emprendimiento)
+    #print("Porcentaje logro:", promedio_emprendiemto)
+    #print("Promedio diario:", promedio_diario)
+    #print("Análisis de emprendimiento:", clasificacion)
+    reporte.append(
+        {
+            "nombre": empredimiento["nombre"],
+            "provincia": empredimiento["provincia"],
+            "tipo": empredimiento["tipo"],
+            "total": total_emprendimiento,
+            "promedio": promedio_diario,
+            "porcentaje": promedio_emprendiemto,
+            "estado": clasificacion
+            
+        }
+    )
+    imprimir_reporte(reporte)
+
+#print(reporte)
+print(provincias)
