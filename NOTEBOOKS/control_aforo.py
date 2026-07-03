@@ -73,3 +73,41 @@ Otros casos para probar:
 
 
 # Desarrolle su solución a partir de esta línea.
+CAPACIDAD_MAXIMA = 700
+grupos_aceptados = []
+grupos_rechazados = []
+ocupacion_actual = 0
+entrada = ""
+
+print("--- CONTROL DE INGRESO ANFITEATRO DEL CENAC ---")
+print("Capacidad máxima: 700 personas")
+print("Escriba 'fin' para cerrar el programa: \n")
+
+                
+while entrada != "fin":
+  entrada = input("\nCantidad de personas a ingresar: ").lower().strip()
+  try:
+    cantidad_grupo = int(entrada)
+    if cantidad_grupo <= 0:
+      print("Entrada inválida: escriba un entero positivo o 'fin'")
+    elif cantidad_grupo + ocupacion_actual <= CAPACIDAD_MAXIMA:
+      ocupacion_actual += cantidad_grupo # 100 + 50 = 150
+      grupos_aceptados.append(cantidad_grupo)
+      print(f"Grupo aceptado: ingresan {cantidad_grupo} personas.")
+    else:
+      grupos_rechazados.append(cantidad_grupo)
+      print(f"Grupo rechazo: no hay espacio para {cantidad_grupo} personas")
+    print(f"Ocupación actual: {ocupacion_actual}")
+    print(f"Espacios disponibles: {CAPACIDAD_MAXIMA - ocupacion_actual}")
+  except ValueError:
+    if entrada == "fin":
+      print("Saliendo del sistema..")
+    else:
+      print("Entrada inválida: escriba un numero o 'fin' para salir.")
+print(grupos_aceptados)
+print(grupos_rechazados)
+
+
+
+
+
