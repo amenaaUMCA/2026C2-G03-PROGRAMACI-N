@@ -24,12 +24,15 @@ def es_adulto_mayor(edad):
 # Construya aqui la lectura del JSON con el docente.
 # Al terminar, la variable pacientes debe tener 15 registros.
 
-with open(ARCHIVO_DATOS,'r') as archivo:
+with open(ARCHIVO_DATOS,'r', encoding='utf-8') as archivo:
     pacientes = json.load(archivo)
 
 
 # 2. Exploracion inicial
 print("Cantidad de pacientes:", len(pacientes))
+print("TIPO:", type(pacientes))
+print("TIPO:", type(pacientes[0]))
+
 
 if len(pacientes) == 0:
     print("Primero construya con el docente la lectura del JSON.")
@@ -37,11 +40,16 @@ if len(pacientes) == 0:
 else:
     # REQUERIMIENTO 2:
     # Explore el primer paciente y muestre sus llaves y valores.
-
+    primer_paciente = pacientes[0]
+    print("Datos del paciente:", primer_paciente.keys())
+    print("Primer paciente:", primer_paciente["nombre"])
+    print("Enfermedades:", primer_paciente["enfermedades"])
+    
     # Variables acumuladoras del analisis.  suma_edades, conteo_san_jose, 
     # conteo_mujeres, conteo_hombres y adultos_mayores.
- 
-
+    suma_edades = 0
+    conteo_enfermedades = {}
+    
     # 4. Ciclo principal
     # Cada vuelta del ciclo representa un paciente del JSON.
     for paciente in pacientes:
@@ -49,7 +57,13 @@ else:
         edad = paciente["edad"]
         provincia = paciente["provincia"]
         genero = paciente["genero"]
-
+        enfermedades = paciente['enfermedades']
+        
+        for enfermedad in enfermedades:
+            if enfermedad in conteo_enfermedades:
+                conteo_enfermedades[enfermedad] += 1
+            else:
+                conteo_enfermedades[enfermedad] = 1
         # REQUERIMIENTO 3:
         # Complete aqui los acumuladores dentro del ciclo.
 
@@ -80,6 +94,8 @@ else:
     #print("Hombres:", conteo_hombres)
     #print("Adultos mayores:", adultos_mayores)
 
+    for enfermedad, cantidad in conteo_enfermedades.items():
+        print(f"Diagnosticos {enfermedad} : {cantidad}")
     # REQUERIMIENTO 5:
     # Escriba dos conclusiones basadas en los resultados.
     print("\nCONCLUSIONES")
