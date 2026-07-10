@@ -50,10 +50,11 @@ def imprimir_reporte(reporte):
 #print("Datos por sede:", sedes[0].keys())
 #print("\nPrimer emprendimiento:", sedes[0]["nombre"])
 
-
 reporte = []
 provincias = set()
-#FALTA GENTE
+venta_mas_alta = 0
+empredimiento_mas_ingresos = []
+ranking = []
 
 for empredimiento in sedes:
     #empredimiento = sedes[0]  # Extraigo el primer empredimeinto de la lista
@@ -64,7 +65,6 @@ for empredimiento in sedes:
     promedio_emprendiemto = calcular_porcentaje(total_emprendimiento, meta)
     promedio_diario = calcular_promedio(ventas)
     clasificacion = calcular_clasificacion(promedio_emprendiemto)
-
 
     provincias.add(empredimiento["provincia"]) # Crea la colección sinb duplicar valores
     
@@ -85,8 +85,19 @@ for empredimiento in sedes:
             
         }
     )
+    ranking.append((empredimiento['nombre'], total_emprendimiento))
+    
+    #     574,000              574,000
+    if total_emprendimiento > venta_mas_alta:
+        venta_mas_alta = total_emprendimiento
+        empredimiento_mas_ingresos = [empredimiento["nombre"]]
+    elif total_emprendimiento == venta_mas_alta:
+        empredimiento_mas_ingresos.append(empredimiento["nombre"])
+    
 #AL FINALIZAR FOR
 imprimir_reporte(reporte)
 
 #print(reporte)
 print(provincias)
+print(*ranking, sep="\n")
+print(venta_mas_alta," - ",empredimiento_mas_ingresos)
