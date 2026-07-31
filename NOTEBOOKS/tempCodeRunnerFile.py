@@ -1,2 +1,3 @@
-hile entrada == "fin":
-  entrada = input("Cantidad de personas a ingresar: ").lower().strip()
+ante")
+estudiantes['nota'] = (estudiantes['puntos'] * 100) / pts_examen
+print(estudiantes)
