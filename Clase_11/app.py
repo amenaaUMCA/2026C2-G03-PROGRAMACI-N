@@ -1,7 +1,7 @@
 """Programa principal del proyecto modular BCCR."""
 
-from lectura_datos import cargar_tabla_bccr
-from limpieza_datos import limpiar_datos
+from lectura_datos import cargar_tabla_bccr, mostrar_top_10
+from limpieza_datos import limpiar_datos, resumir_por_tipo_entidad, filtrar_diferencial_alto
 
 def ejecutar():
     """Cargar los datos y prsentar el menú del sistema"""
@@ -19,11 +19,16 @@ def ejecutar():
         
         opcion = input("Seleccione un opción: ").strip()
         if opcion == "1":
-            seleccion = ["ENTIDAD", "COMPRA", "VENTA", "DIFERENCIAL"]
+            print(mostrar_top_10(datos))
         elif opcion == "2":
-            pass
+            promedios = resumir_por_tipo_entidad(datos)
+            print(f"El promedio general del diferencial es:, {promedios[0]:.2f}")
+            print("Promedio por tipo de entidad:")
+            print(promedios[1].to_string(index=False))
         elif opcion == "3":
-            pass
+            print("Entidades con diferencial mayor al promedio:")
+            entidades_altas = filtrar_diferencial_alto(datos)
+            print(mostrar_top_10(entidades_altas))
         elif opcion == "4":
             pass
         elif opcion == "5":
